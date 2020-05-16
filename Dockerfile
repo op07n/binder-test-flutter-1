@@ -20,6 +20,7 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends curl git unzip xz-utils zip libglu1-mesa openjdk-8-jdk wget
  
 
+USER ${USER}
 WORKDIR /home/${NB_USER}
 
 
@@ -40,9 +41,9 @@ ENV PATH "$PATH:/home/${NB_USER}/Android/sdk/platform-tools"
 
 # Download Flutter SDK
 RUN git clone https://github.com/flutter/flutter.git
-ENV PATH "$PATH:/home/developer/flutter/bin"
+ENV PATH "$PATH:/home/${NB_USER}/flutter/bin"
    
-
+RUN flutter doctor
 
 
 
